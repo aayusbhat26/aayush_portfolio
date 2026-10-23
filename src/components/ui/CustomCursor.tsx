@@ -1,14 +1,32 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useSyncExternalStore } from "react";
 import { motion } from "framer-motion";
+
+const FINE_POINTER_QUERY = "(pointer: fine) and (hover: hover)";
+
+function subscribeToPointer(callback: () => void) {
+  const query = window.matchMedia(FINE_POINTER_QUERY);
+  query.addEventListener("change", callback);
+  return () => query.removeEventListener("change", callback);
+}
 
 export default function CustomCursor() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [isHovered, setIsHovered] = useState(false);
+  const [seenPointer, setSeenPointer] = useState(false);
+  const enabled = useSyncExternalStore(
+    subscribeToPointer,
+    () => window.matchMedia(FINE_POINTER_QUERY).matches,
+    () => false
+  );
 
   useEffect(() => {
+    if (!enabled) return;
+
     const updateMousePosition = (e: MouseEvent) => {
+      document.documentElement.classList.add("custom-cursor");
+      setSeenPointer(true);
       setMousePosition({ x: e.clientX, y: e.clientY });
     };
 
@@ -33,8 +51,11 @@ export default function CustomCursor() {
     return () => {
       window.removeEventListener("mousemove", updateMousePosition);
       window.removeEventListener("mouseover", handleMouseOver);
+      document.documentElement.classList.remove("custom-cursor");
     };
-  }, []);
+  }, [enabled]);
+
+  if (!enabled || !seenPointer) return null;
 
   return (
     <>

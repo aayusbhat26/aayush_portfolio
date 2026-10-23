@@ -2,6 +2,7 @@
 
 import { motion, useScroll, useMotionValueEvent } from "framer-motion";
 import { useState, useEffect } from "react";
+import { usePathname } from "next/navigation";
 import Link from "next/link";
 
 const navLinks = [
@@ -12,6 +13,7 @@ const navLinks = [
 ];
 
 export default function Navbar() {
+  const pathname = usePathname();
   const { scrollY } = useScroll();
   const [hidden, setHidden] = useState(false);
   const [lastY, setLastY] = useState(0);
@@ -47,6 +49,7 @@ export default function Navbar() {
   }, []);
 
   return (
+    pathname?.startsWith("/work") ? null : (
     <motion.header
       variants={{
         visible: { y: 0, opacity: 1 },
@@ -62,12 +65,12 @@ export default function Navbar() {
         - Background: rgba(8,8,8,.55)
         - Blur: 22px
       */}
-      <nav className="flex items-center gap-8 px-10 py-5 border rounded-full border-white/[0.08] bg-[#080808]/55 backdrop-blur-[22px] shadow-lg">
-        <Link href="/" className="text-sm font-semibold tracking-widest uppercase text-white hover:text-blue-400 transition-colors" data-cursor="hover">
+      <nav className="flex items-center gap-2 sm:gap-8 px-3 py-2 sm:px-10 sm:py-5 border rounded-full border-white/[0.08] bg-[#080808]/55 backdrop-blur-[22px] shadow-lg">
+        <Link href="/" className="hidden sm:block text-sm font-semibold tracking-widest uppercase text-white hover:text-blue-400 transition-colors" data-cursor="hover">
           Aayush
         </Link>
-        <div className="w-[1px] h-4 bg-white/20" />
-        <ul className="flex items-center gap-2">
+        <div className="hidden sm:block w-[1px] h-4 bg-white/20" />
+        <ul className="flex items-center gap-0.5 sm:gap-2">
           {navLinks.map((link) => {
             const isActive = activeSection === link.href.substring(1);
             return (
@@ -81,7 +84,7 @@ export default function Navbar() {
                 )}
                 <Link
                   href={link.href}
-                  className={`relative z-10 block px-4 py-2 text-sm font-medium transition-colors ${
+                  className={`relative z-10 block px-2.5 py-1.5 text-xs sm:px-4 sm:py-2 sm:text-sm font-medium transition-colors ${
                     isActive ? "text-white" : "text-white/60 hover:text-white"
                   }`}
                   data-cursor="hover"
@@ -94,5 +97,6 @@ export default function Navbar() {
         </ul>
       </nav>
     </motion.header>
+    )
   );
 }

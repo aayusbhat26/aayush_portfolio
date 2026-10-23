@@ -2,12 +2,15 @@
 
 import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 
 export default function Preloader() {
-  const [isLoading, setIsLoading] = useState(true);
+  const pathname = usePathname();
+  const [isLoading, setIsLoading] = useState(!pathname?.startsWith("/work"));
   const [progress, setProgress] = useState(0);
 
   useEffect(() => {
+    if (pathname?.startsWith("/work")) return;
     // Simulate loading progress - slower and more visible
     const interval = setInterval(() => {
       setProgress((prev) => {
@@ -22,7 +25,7 @@ export default function Preloader() {
     }, 150); // Slower interval
 
     return () => clearInterval(interval);
-  }, []);
+  }, [pathname]);
 
   return (
     <AnimatePresence>

@@ -4,31 +4,6 @@ import { motion } from "framer-motion";
 import { ArrowDown } from "lucide-react";
 
 export default function Hero() {
-  const line1 = "I enjoy turning".split(" ");
-  const line2 = "complex architecture".split(" ");
-  const line3 = "into elegant products.".split(" ");
-
-  const containerVariants = {
-    hidden: { opacity: 1 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.15,
-        delayChildren: 0.5,
-      },
-    },
-  };
-
-  const wordVariants = {
-    hidden: { opacity: 0, filter: "blur(8px)", y: 10 },
-    visible: {
-      opacity: 1,
-      filter: "blur(0px)",
-      y: 0,
-      transition: { duration: 0.8, ease: "easeOut" },
-    },
-  };
-
   return (
     <section className="relative w-full h-screen flex flex-col items-center justify-center overflow-hidden bg-transparent">
       {/* Subtle Background Elements (Reveal after text) */}

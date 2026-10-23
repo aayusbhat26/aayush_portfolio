@@ -55,6 +55,16 @@ body > *:not([class*="fixed"]):not([class*="absolute"]) {
   }
 }
 
+html.custom-cursor,
+html.custom-cursor a,
+html.custom-cursor button {
+  cursor: none;
+}
+
+.font-editorial {
+  font-family: var(--font-editorial), Georgia, "Times New Roman", serif;
+}
+
 ::-webkit-scrollbar {
   display: none;
 }

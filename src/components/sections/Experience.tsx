@@ -1,196 +1,162 @@
-"use client";
+import { ArrowUpRight } from "lucide-react";
 
-import { motion } from "framer-motion";
-import { useRef } from "react";
-import Image from "next/image";
-import { Code2, Cloud, Database, Network, Sparkles, Layers, Box, Webhook, HardDrive, Terminal, Zap, CloudLightning, Activity, Flame } from "lucide-react";
+const RESUME =
+  "https://drive.google.com/file/d/1aX8G92EQv9XeJ4eGwYgukhBDGFD8EAZs/view?usp=sharing";
 
-const experiences = [
+const role = {
+  company: "Nagarro",
+  title: "Associate Software Engineer",
+  period: ["Jan 2026", "Present"],
+  location: "Gurugram, India",
+  stack: ["Python", "FastAPI", "Kafka", "Docker", "Azure"],
+  highlights: [
+    "Built incremental, watermark-based ETL pipelines processing high-volume stream telemetry.",
+    "Designed production-grade Medallion architecture with Z-Ordering on Delta Lake.",
+    "Engineered an SLA-driven framework handling millions of events/day with real-time fault alerts.",
+  ],
+};
+
+const education = [
   {
-    id: "nagarro",
-    company: "Nagarro",
-    role: "Associate Software Engineer",
-    date: "Jan 2026 — Present",
-    location: "Gurugram, India",
-    logo: "/images/Nagarro_logo.svg.svg",
-    technologies: [
-      { name: "Python", icon: <Terminal className="w-3 h-3" /> },
-      { name: "FastAPI", icon: <Zap className="w-3 h-3" /> },
-      { name: "Kafka", icon: <Activity className="w-3 h-3" /> },
-      { name: "Docker", icon: <Box className="w-3 h-3" /> },
-      { name: "Azure", icon: <Cloud className="w-3 h-3" /> },
-    ],
-    highlights: [
-      "Built incremental, watermark-based ETL pipelines processing high-volume stream telemetry.",
-      "Designed production-grade Medallion architecture with Z-Ordering on Delta Lake.",
-      "Engineered an SLA-driven framework handling millions of events/day with real-time fault alerts.",
-    ],
+    school: "USICT",
+    degree: "Master of Computer Applications",
+    period: ["2024", "2026"],
+    detail: "CGPA 8.99",
+    note: "Specialized in Software Engineering and scalable system design.",
   },
   {
-    id: "mca",
-    company: "USICT",
-    role: "Master of Computer Applications",
-    date: "2024 — 2026",
-    location: "Delhi, India",
-    logo: null,
-    logoText: "U",
-    cgpa: "8.99",
-    technologies: [],
-    highlights: [
-      "Specialized in Software Engineering and scalable system design.",
-    ],
+    school: "Integrated Institute of Technology, Dwarka",
+    degree: "Bachelor of Computer Applications",
+    period: ["2020", "2023"],
+    detail: "CGPA 9.01",
+    note: "Graduated with distinction. Built strong foundations in core computer science.",
   },
-  {
-    id: "bca",
-    company: "Integrated Institute of Technology, Dwarka",
-    role: "Bachelor of Computer Applications",
-    date: "2020 — 2023",
-    location: "Delhi, India",
-    logo: null,
-    logoText: "I",
-    cgpa: "9.01",
-    technologies: [],
-    highlights: [
-      "Graduated with distinction. Built strong foundations in core computer science.",
-    ],
-  }
 ];
 
-export default function Experience() {
-  const containerRef = useRef<HTMLDivElement>(null);
-
+function DateRail({ period }: { period: string[] }) {
   return (
-    <section 
-      id="experience" 
-      ref={containerRef} 
-      className="relative w-full min-h-screen py-32 flex flex-col items-center bg-transparent overflow-hidden"
-    >
+    <div className="flex items-center gap-2 font-mono text-[9px] uppercase tracking-[0.16em] text-white/30 md:block md:pt-1.5">
+      <span>{period[0]}</span>
+      <span className="text-white/15 md:hidden">—</span>
+      <span className="md:mt-1 md:block">{period[1]}</span>
+    </div>
+  );
+}
 
-      <div className="w-full max-w-5xl mx-auto px-6 z-10">
-        {/* Section Title */}
-        <div className="mb-24 pl-0 md:pl-12">
-          <h2 className="text-sm font-mono tracking-[0.2em] text-blue-500 mb-4 uppercase">Experience</h2>
-          <h3 className="text-4xl md:text-5xl lg:text-[56px] font-bold text-white tracking-tight leading-tight">
-            Building systems that scale. <br className="hidden md:block" />
-            <span className="text-white/40">Not just features.</span>
-          </h3>
+export default function Experience() {
+  return (
+    <section
+      id="experience"
+      className="relative z-10 w-full border-t border-white/[0.06] bg-[#080807] py-24 md:py-32"
+    >
+      <div className="mx-auto w-full max-w-6xl px-6">
+        <div className="flex flex-col justify-between gap-4 border-b border-white/10 pb-6 sm:flex-row sm:items-end">
+          <p className="font-mono text-[10px] uppercase tracking-[0.26em] text-[#C09B86]">
+            01 / Experience
+          </p>
+          <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-white/30">
+            2020 — Present
+          </p>
         </div>
 
-        {/* Timeline Layout */}
-        <div className="relative pl-8 md:pl-0">
-          
-          {/* Main Vertical Timeline Line */}
-          <div className="absolute left-0 md:left-[50px] top-4 bottom-0 w-[2px] bg-gradient-to-b from-[#2B2B2B] via-[#2B2B2B] to-transparent z-0" />
+        <div className="mt-12 grid gap-12 lg:grid-cols-[0.78fr_1.22fr] lg:gap-16">
+          <div className="lg:sticky lg:top-28 lg:self-start">
+            <h2 className="font-editorial text-[clamp(3.4rem,7vw,5.8rem)] leading-[0.86] tracking-[-0.035em] text-[#F4F0E8]">
+              The systems
+              <br />
+              <em className="text-[#D8D2C6]">underneath.</em>
+            </h2>
+            <p className="mt-6 max-w-sm text-[15px] leading-7 text-white/45">
+              I work on the layer that has to stay correct: pipelines, schemas,
+              and the services product teams depend on.
+            </p>
+            <a
+              href={RESUME}
+              target="_blank"
+              rel="noreferrer"
+              className="group mt-7 inline-flex items-center gap-2 font-mono text-[9px] uppercase tracking-[0.16em] text-[#C09B86] transition-colors hover:text-[#E2C4B2]"
+            >
+              Résumé
+              <ArrowUpRight className="h-3.5 w-3.5 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+            </a>
+          </div>
 
-          <div className="flex flex-col gap-y-20 md:gap-y-32" style={{ 
-            gap: experiences.map((_, i) => i === 0 ? '5rem' : i === 1 ? '8rem' : '6.5rem').join(' ')
-          }}>
-            {experiences.map((exp, index) => {
-              // Breaking mathematical perfection - varied spacing and styling
-              const isNagarro = index === 0;
-              const cardPaddings = ['p-10 md:p-12', 'p-8 md:p-9', 'p-7 md:p-8'];
-              const delays = [0, 0.15, 0.25];
-              
-              return (
-              <div key={exp.id} className="relative flex flex-col md:flex-row md:items-start group">
-                
-                {/* Timeline Dot (Linear Style) */}
-                <div className="absolute left-[-31px] md:left-[51px] md:-translate-x-1/2 top-[40px] md:top-[40px] z-10 flex items-center justify-center">
-                  {/* Outer Glow */}
-                  <motion.div 
-                    initial={{ scale: 0.5, opacity: 0 }}
-                    whileInView={{ scale: 1, opacity: 1 }}
-                    transition={{ duration: 1, repeat: Infinity, repeatType: "reverse" }}
-                    className="absolute w-8 h-8 rounded-full bg-blue-500/20 blur-sm"
-                  />
-                  {/* Inner Ring */}
-                  <div className="w-4 h-4 rounded-full bg-[#121212] border-2 border-[#6B7280] group-hover:border-blue-500 transition-colors duration-300 flex items-center justify-center">
-                    {/* Core */}
-                    <div className="w-1.5 h-1.5 rounded-full bg-[#6B7280] group-hover:bg-blue-400 transition-colors duration-300" />
-                  </div>
+          <div>
+            <article className="grid gap-5 md:grid-cols-[112px_1fr] md:gap-8">
+              <DateRail period={role.period} />
+
+              <div>
+                <div className="flex flex-wrap items-baseline justify-between gap-2">
+                  <h3 className="font-editorial text-[42px] leading-none tracking-[-0.025em] text-[#F4F0E8] md:text-[52px]">
+                    {role.company}
+                  </h3>
+                  <span className="font-mono text-[8px] uppercase tracking-[0.16em] text-[#C09B86]">
+                    Current
+                  </span>
                 </div>
+                <p className="mt-3 text-[17px] text-white/75">{role.title}</p>
+                <p className="mt-1 font-mono text-[9px] uppercase tracking-[0.12em] text-white/30">
+                  {role.location}
+                </p>
 
-                {/* Card Container */}
-                <motion.div
-                  initial={{ opacity: 0, x: 20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true, margin: "-100px" }}
-                  transition={{ duration: 0.7, delay: delays[index] }}
-                  className="w-full max-w-[720px] md:ml-[120px]"
-                >
-                  <div className={`relative ${isNagarro ? 'bg-gradient-to-br from-[#1a1a1a] to-[#121212]' : 'bg-[#121212]'} border ${isNagarro ? 'border-white/[0.12]' : 'border-white/[0.08]'} rounded-3xl ${cardPaddings[index]} shadow-2xl backdrop-blur-xl overflow-hidden group-hover:border-white/[0.15] transition-all duration-500 ${isNagarro ? 'hover:shadow-blue-500/5' : ''}`}>
-                    
-                    {/* Nagarro gets special treatment - glow effect */}
-                    {isNagarro && (
-                      <div className="absolute -inset-1 bg-gradient-to-r from-blue-500/0 via-blue-500/5 to-blue-500/0 rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-700 -z-10" />
-                    )}
-                    
-                    {/* Inner Border for Depth */}
-                    <div className="absolute inset-0 border border-white/[0.02] rounded-3xl pointer-events-none" />
+                <ul className="mt-7 space-y-4 border-t border-white/10 pt-6">
+                  {role.highlights.map((highlight) => (
+                    <li
+                      key={highlight}
+                      className="flex gap-3 text-[14px] leading-6 text-white/55"
+                    >
+                      <span className="mt-2 h-1 w-1 shrink-0 bg-[#C09B86]" />
+                      <span>{highlight}</span>
+                    </li>
+                  ))}
+                </ul>
 
-                    {/* Header: Logo + Title */}
-                    <div className="flex items-start gap-6 mb-8">
-                      {/* 72x72 Logo */}
-                      <div className="w-[72px] h-[72px] shrink-0 bg-white/5 border border-white/10 rounded-[18px] flex items-center justify-center p-3 backdrop-blur-md">
-                        {exp.logo ? (
-                          <Image src={exp.logo} alt={exp.company} width={48} height={48} className="object-contain" />
-                        ) : (
-                          <span className="text-2xl font-bold text-white/50">{exp.logoText}</span>
-                        )}
-                      </div>
-                      
-                      <div className="flex-1 pt-1">
-                        <div className="flex flex-col md:flex-row md:items-center justify-between gap-2 mb-1">
-                          <h4 className="text-2xl font-bold text-white tracking-tight">{exp.company}</h4>
-                          <span className="text-sm font-mono text-white/40">{exp.date}</span>
-                        </div>
-                        <p className="text-lg text-white/70 font-medium">{exp.role}</p>
-                        <p className="text-sm text-white/40 mt-1 flex items-center gap-2">
-                          {exp.location} 
-                          {exp.cgpa && (
-                            <>
-                              <span>•</span>
-                              <span className="text-white/60">CGPA: {exp.cgpa}</span>
-                            </>
-                          )}
-                        </p>
-                      </div>
-                    </div>
-
-                    {/* Technologies (Tech Chips) */}
-                    {exp.technologies.length > 0 && (
-                      <>
-                        <div className="w-full h-px bg-white/[0.05] my-6" />
-                        <div className="flex flex-wrap gap-[10px] mb-6">
-                          {exp.technologies.map((tech) => (
-                            <span 
-                              key={tech.name} 
-                              className="flex items-center gap-2 h-[30px] px-[14px] bg-white/[0.03] border border-white/[0.08] rounded-full text-[13px] text-white/70 hover:bg-white/[0.08] hover:text-white hover:-translate-y-[2px] hover:shadow-[0_4px_12px_rgba(255,255,255,0.05)] transition-all duration-300 cursor-default"
-                            >
-                              {tech.icon}
-                              {tech.name}
-                            </span>
-                          ))}
-                        </div>
-                      </>
-                    )}
-
-                    {/* Highlights */}
-                    <div className="w-full h-px bg-white/[0.05] my-6" />
-                    <ul className="space-y-3">
-                      {exp.highlights.map((highlight, i) => (
-                        <li key={i} className="flex items-start gap-3 text-white/60 leading-relaxed text-sm md:text-base">
-                          <span className="mt-2 w-1.5 h-1.5 rounded-full bg-blue-500/50 shrink-0" />
-                          <span>{highlight}</span>
-                        </li>
-                      ))}
-                    </ul>
-
-                  </div>
-                </motion.div>
+                <div className="mt-6 flex flex-wrap items-center gap-x-3 gap-y-2 font-mono text-[9px] uppercase tracking-[0.1em] text-white/35">
+                  {role.stack.map((item, index) => (
+                    <span key={item} className="flex items-center gap-3">
+                      {index > 0 && <span className="text-white/15">/</span>}
+                      {item}
+                    </span>
+                  ))}
+                </div>
               </div>
-            );
-            })}
+            </article>
+
+            <div className="mt-16">
+              <div className="flex items-center justify-between border-b border-white/10 pb-3">
+                <p className="font-mono text-[9px] uppercase tracking-[0.18em] text-white/30">
+                  Education
+                </p>
+                <p className="font-mono text-[9px] uppercase tracking-[0.14em] text-white/20">
+                  Delhi, India
+                </p>
+              </div>
+
+              <div>
+                {education.map((entry) => (
+                  <article
+                    key={entry.school}
+                    className="grid gap-4 border-b border-white/10 py-6 md:grid-cols-[112px_1fr] md:gap-8"
+                  >
+                    <DateRail period={entry.period} />
+                    <div>
+                      <h4 className="font-editorial text-[26px] leading-tight tracking-[-0.015em] text-[#F4F0E8]">
+                        {entry.school}
+                      </h4>
+                      <div className="mt-1 flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
+                        <p className="text-[13px] text-white/50">{entry.degree}</p>
+                        <span className="font-mono text-[9px] uppercase tracking-[0.1em] text-white/35">
+                          {entry.detail}
+                        </span>
+                      </div>
+                      <p className="mt-2 text-[12px] leading-5 text-white/30">
+                        {entry.note}
+                      </p>
+                    </div>
+                  </article>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       </div>

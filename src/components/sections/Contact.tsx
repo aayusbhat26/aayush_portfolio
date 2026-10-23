@@ -2,7 +2,6 @@
 
 import { motion } from "framer-motion";
 import { Mail, Briefcase, Code2, FileText, Code, Terminal } from "lucide-react";
-import Link from "next/link";
 
 const links = [
   { name: "Email", href: "mailto:work.aayush.bhat@gmail.com", icon: <Mail className="w-5 h-5" /> },
