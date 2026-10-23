@@ -1,0 +1,10 @@
+services:
+  - type: web
+    runtime: static
+    name: aayush-portfolio
+    buildCommand: npm ci && npm run build
+    staticPublishPath: ./out
+    routes:
+      - type: rewrite
+        source: /work/taskflow
+        destination: /work/taskflow/index.html
