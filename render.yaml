@@ -4,7 +4,13 @@ services:
     name: aayush-portfolio
     buildCommand: npm ci && npm run build
     staticPublishPath: ./out
+    envVars:
+      - key: NEXT_PUBLIC_SITE_URL
+        sync: false
     routes:
       - type: rewrite
         source: /work/taskflow
         destination: /work/taskflow/index.html
+      - type: rewrite
+        source: /work/globe-news-atlas
+        destination: /work/globe-news-atlas/index.html

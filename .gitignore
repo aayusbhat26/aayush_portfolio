@@ -67,3 +67,6 @@ DESIGN_IMPROVEMENTS.md
 QUICK_DEPLOY.md
 deploy.sh
 deploy-steps.txt
+
+# local credentials
+.secrets/

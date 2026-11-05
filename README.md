@@ -1,36 +1,79 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Aayush Bhat — Portfolio
 
-## Getting Started
+A one-page backend and data engineering portfolio. Off-white paper, near-black
+ink, Geist Sans / Geist Mono, thin rules, large type, and a restrained oxide
+accent. No 3D room and no dark mode.
 
-First, run the development server:
+## Pages
+
+- `/` — hero, profile, experience, projects, stack, record, writing,
+  certifications, contact
+- `/work/taskflow` — TaskFlow case study
+- `/work/globe-news-atlas` — Globe News Atlas case study
+- Branded not-found page
+
+## Theme
+
+- `#f4f4f0` paper, `#111111` ink, `#c74634` oxide accent.
+- Geist Sans and Geist Mono, bundled through the `geist` package.
+- A pinned paper hero with a black continuation panel that slides over it on scroll.
+- Large uppercase display type, mono metadata, hairline borders, and subtle
+  paper grain.
+- Scroll reveals use CSS `animation-timeline: view()` and respect
+  `prefers-reduced-motion`.
+
+## Content
+
+| What | Where |
+|---|---|
+| Homepage sections | `src/components/site/` |
+| Case-study layout | `src/components/case-study/` |
+| Verified content and links | `src/lib/site.ts` |
+| Metadata, JSON-LD, social helpers | `src/lib/seo.ts` |
+| Case studies | `src/app/work/` |
+| Project screenshots | `public/work/` |
+| LeetCode snapshot + sync script | `src/data/leetcode.json`, `scripts/sync-leetcode.mjs` |
+| Private certification learning plan | `docs/certification-learning-plan.md` |
+| Dev.to drafts | `content/devto/` |
+
+## Stack
+
+- Next.js 16 App Router with `output: "export"`
+- React 19
+- Tailwind CSS 4
+- Geist via the `geist` package
+- Static hosting configuration in `render.yaml`
+
+## Local development
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open `http://localhost:3000`.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Build
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run build
+```
 
-## Learn More
+The static site is written to `out/`.
 
-To learn more about Next.js, take a look at the following resources:
+Set `NEXT_PUBLIC_SITE_URL` to the deployed origin to enable absolute canonical
+URLs, Open Graph images, and a populated sitemap. Without it, the site still
+builds; social metadata is omitted rather than pointing at localhost.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## LeetCode record sync
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+The Record section reads `src/data/leetcode.json`. The workflow in
+`.github/workflows/sync-leetcode.yml` fetches the public LeetCode profile daily
+at 03:17 UTC, commits the snapshot only when something changed, and triggers a
+Render deploy when the optional `RENDER_DEPLOY_HOOK_URL` secret is configured.
 
-## Deploy on Vercel
+Run it manually with:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```bash
+node scripts/sync-leetcode.mjs
+```
