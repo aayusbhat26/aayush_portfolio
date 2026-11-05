@@ -1,10 +1,11 @@
+import { RESUME_VERSION } from "@/data/resume";
+
 export const LINKS = {
   email: "work.aayush.bhat@gmail.com",
   linkedin: "https://www.linkedin.com/in/aayush-kumar-bhat-/",
   github: "https://github.com/aayusbhat26/",
   leetcode: "https://leetcode.com/u/Aayush_Kumar_Bhat_08/",
-  resume:
-    "https://drive.google.com/file/d/1w5hxmcIjvGTKjTOyI9zIlWpDEkzIwCPS/view?usp=sharing",
+  resume: `/resume.pdf?v=${RESUME_VERSION}`,
   taskflowCase: "/work/taskflow",
   taskflowLive: "https://taskflow-render.onrender.com/en",
   taskflowSource: "https://github.com/aayusbhat26/task_flow",
