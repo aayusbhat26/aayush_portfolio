@@ -4,7 +4,7 @@ export const LINKS = {
   github: "https://github.com/aayusbhat26/",
   leetcode: "https://leetcode.com/u/Aayush_Kumar_Bhat_08/",
   resume:
-    "https://drive.google.com/file/d/1EgpuLFyFB8I5yLKvh99a-osnaAilII3L/view?usp=sharing",
+    "https://drive.google.com/file/d/1w5hxmcIjvGTKjTOyI9zIlWpDEkzIwCPS/view?usp=sharing",
   taskflowCase: "/work/taskflow",
   taskflowLive: "https://taskflow-render.onrender.com/en",
   taskflowSource: "https://github.com/aayusbhat26/task_flow",
