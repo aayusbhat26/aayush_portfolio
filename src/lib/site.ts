@@ -64,9 +64,9 @@ export const EXPERIENCE = {
   bullets: [
     "Built a Next.js and FastAPI app on DuckDB and SQL, keeping sub-second, zero-copy OLAP queries over large PyArrow datasets.",
     "Built Python REST APIs and backend services, owned production deployments, and traced system health in Azure Monitor.",
-    "Architected PySpark streaming for 3.8M+ telemetry events per day with watermark-based correctness.",
+    "Architected PySpark streaming with watermark-based correctness.",
     "Engineered window-function validation across 150+ production streams, catching schema anomalies and duplicates.",
-    "Implemented a Delta Lake medallion architecture with Z-Ordering, improving analytical query performance by 42%.",
+    "Implemented a Delta Lake medallion architecture with Z-Ordering.",
     "Orchestrated distributed batch jobs with GitHub Actions and governed 85+ tables through Unity Catalog.",
   ],
   training:
