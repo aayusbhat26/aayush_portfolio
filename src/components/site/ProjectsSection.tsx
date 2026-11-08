@@ -9,7 +9,7 @@ export default function ProjectsSection() {
         <SectionHeader
           number="03"
           title="Projects"
-          note="Two products, built and deployed end to end."
+          note="Two products, built and deployed end to end, and one proof of concept in public."
         />
 
         <div className="mt-2 border-t border-[#111]/20">
@@ -28,8 +28,12 @@ export default function ProjectsSection() {
                   </span>
                 </div>
                 <span className="inline-flex items-center gap-2 border border-[#111]/25 px-2.5 py-1 font-mono text-[8px] uppercase tracking-[0.12em] text-[#111]/60">
-                  <span className="h-1.5 w-1.5 rounded-full bg-[#2f7d4f]" />
-                  Live
+                  <span
+                    className={`h-1.5 w-1.5 rounded-full ${
+                      project.badge === "Live" ? "bg-[#2f7d4f]" : "bg-[#111]/30"
+                    }`}
+                  />
+                  {project.badge}
                 </span>
               </div>
 
@@ -73,29 +77,28 @@ export default function ProjectsSection() {
                   </dl>
 
                   <div className="mt-6 flex flex-wrap items-center gap-x-5 gap-y-3 font-mono text-[9px] uppercase tracking-[0.12em]">
-                    <Link
-                      href={project.caseHref}
-                      prefetch={false}
-                      className="inline-flex items-center gap-2 bg-[#111] px-4 py-2.5 text-[#f4f4f0] transition-colors hover:bg-[#c74634]"
-                    >
-                      Read the case study <span aria-hidden="true">↗</span>
-                    </Link>
-                    <a
-                      href={project.liveHref}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="text-[#111]/55 transition-colors hover:text-[#111]"
-                    >
-                      Live <span aria-hidden="true">↗</span>
-                    </a>
-                    <a
-                      href={project.sourceHref}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="text-[#111]/55 transition-colors hover:text-[#111]"
-                    >
-                      Source <span aria-hidden="true">↗</span>
-                    </a>
+                    {project.links.map((link) =>
+                      link.internal ? (
+                        <Link
+                          key={link.label}
+                          href={link.href}
+                          prefetch={false}
+                          className="inline-flex items-center gap-2 bg-[#111] px-4 py-2.5 text-[#f4f4f0] transition-colors hover:bg-[#c74634]"
+                        >
+                          {link.label} <span aria-hidden="true">↗</span>
+                        </Link>
+                      ) : (
+                        <a
+                          key={link.label}
+                          href={link.href}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="text-[#111]/55 transition-colors hover:text-[#111]"
+                        >
+                          {link.label} <span aria-hidden="true">↗</span>
+                        </a>
+                      ),
+                    )}
                   </div>
                 </div>
               </div>

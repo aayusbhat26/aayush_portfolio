@@ -44,8 +44,8 @@ export default function WritingSection() {
         </div>
 
         <p className="mt-5 max-w-xl text-[11px] leading-5 text-[#111]/35">
-          One published piece is listed because one is what exists. No ghost
-          posts, no repurposed documentation.
+          {WRITING.length} pieces are listed because that is what is published.
+          No ghost posts, no repurposed documentation.
         </p>
       </div>
     </section>

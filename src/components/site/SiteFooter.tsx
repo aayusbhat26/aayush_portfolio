@@ -4,6 +4,7 @@ const STACK_MARQUEE = [
   "FastAPI",
   "DuckDB",
   "Delta Lake",
+  "Kafka",
   "Databricks",
   "Azure",
   "Docker",

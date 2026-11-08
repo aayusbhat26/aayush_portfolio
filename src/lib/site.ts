@@ -14,6 +14,9 @@ export const LINKS = {
   atlasSource: "https://github.com/aayusbhat26/globe_news_atlas",
   devto:
     "https://dev.to/aayusbhat26/how-to-integrate-clerk-in-next-js-application--4hba",
+  devtoWatermarks:
+    "https://dev.to/aayusbhat26/watermarks-are-a-contract-validating-150-pyspark-streams-5dj5",
+  pocSource: "https://github.com/aayusbhat26/poc_latency_test",
 } as const;
 
 export const PROFILE = {
@@ -87,7 +90,27 @@ export const EXPERIENCE = {
   ],
 } as const;
 
-export const PROJECTS = [
+export type ProjectLink = {
+  label: string;
+  href: string;
+  internal?: boolean;
+};
+
+export type Project = {
+  number: string;
+  year: string;
+  name: string;
+  tagline: string;
+  description: string;
+  role: string;
+  stack: string;
+  status: string;
+  badge: string;
+  links: ProjectLink[];
+  facts: string;
+};
+
+export const PROJECTS: Project[] = [
   {
     number: "01",
     year: "2026",
@@ -98,9 +121,12 @@ export const PROJECTS = [
     role: "Product design + full-stack",
     stack: "Next.js · Express · Socket.IO · PostgreSQL",
     status: "Live on Render + Neon",
-    caseHref: LINKS.taskflowCase,
-    liveHref: LINKS.taskflowLive,
-    sourceHref: LINKS.taskflowSource,
+    badge: "Live",
+    links: [
+      { label: "Read the case study", href: LINKS.taskflowCase, internal: true },
+      { label: "Live app", href: LINKS.taskflowLive },
+      { label: "Source", href: LINKS.taskflowSource },
+    ],
     facts: "62 Prisma models · 116 DSA questions · 2 OAuth providers",
   },
   {
@@ -113,12 +139,30 @@ export const PROJECTS = [
     role: "Product, frontend, data pipeline",
     stack: "React 19 · globe.gl / Three.js · FastAPI · Parquet",
     status: "Live on Render Free",
-    caseHref: LINKS.atlasCase,
-    liveHref: LINKS.atlasLive,
-    sourceHref: LINKS.atlasSource,
+    badge: "Live",
+    links: [
+      { label: "Read the case study", href: LINKS.atlasCase, internal: true },
+      { label: "Live app", href: LINKS.atlasLive },
+      { label: "Source", href: LINKS.atlasSource },
+    ],
     facts: "10 source families · 4 time windows · 400-event display cap",
   },
-] as const;
+  {
+    number: "03",
+    year: "2026",
+    name: "HVAC Telemetry Lake",
+    tagline: "Kafka in, Delta Lake out, DuckDB on top.",
+    description:
+      "A proof of concept that streams HVAC telemetry through Aiven Kafka over TLS, drains it into a Delta Lake medallion pipeline in PySpark, and serves the gold layer to a FastAPI read path that runs DuckDB queries directly over Arrow. The dirty input is generated on purpose so the quality layer has something real to reject.",
+    role: "Streaming, pipeline, serving",
+    stack: "Apache Kafka · confluent-kafka · PySpark · Delta Lake · DuckDB · FastAPI",
+    status: "Public proof of concept",
+    badge: "Open source",
+    links: [{ label: "Source", href: LINKS.pocSource }],
+    facts:
+      "100k records · 56-column silver layer · 15 gold tables · 2 consumer groups",
+  },
+];
 
 export const STACK = [
   {
@@ -128,6 +172,10 @@ export const STACK = [
   {
     label: "Data",
     body: "PySpark, DuckDB, Delta Lake, Databricks, Parquet, PyArrow, pandas.",
+  },
+  {
+    label: "Streaming",
+    body: "Apache Kafka, confluent-kafka, consumer groups, server-sent events.",
   },
   {
     label: "Backend",
@@ -197,6 +245,14 @@ export const CERTIFICATIONS: Certification[] = [
 
 export const WRITING = [
   {
+    date: "06 Nov 2026",
+    source: "Dev.to",
+    title: "Watermarks are a contract: validating 150+ PySpark streams",
+    description:
+      "A watermark is not a config value. It is a promise about lateness, state, and what the job will silently drop.",
+    href: LINKS.devtoWatermarks,
+  },
+  {
     date: "22 Aug 2023",
     source: "Dev.to",
     title: "How to integrate Clerk in a Next.js application",
@@ -207,7 +263,7 @@ export const WRITING = [
 ] as const;
 
 export const PROFILE_PARAGRAPHS = [
-  "I work on the layer that has to stay correct. Most of my time goes into pipelines, schemas, and the services product teams depend on — the parts that are invisible when they work and expensive when they don't.",
-  "At Nagarro I work across Python, PySpark, FastAPI, DuckDB, and Delta Lake. Outside work I build full products end to end, from the database schema to the interface that makes the data inspectable.",
+  "I work on the layer that has to stay correct. Most of my time goes into pipelines, schemas, and the services product teams depend on, the parts that are invisible when they work and expensive when they don't.",
+  "At Nagarro I work across Python, PySpark, FastAPI, DuckDB, and Delta Lake. Outside work I build full products end to end, from the database schema to the interface that makes the data inspectable. The HVAC telemetry lake I build in public runs the whole loop, from a Kafka producer through the medallion pipeline to a FastAPI read path.",
   "I am based in New Delhi and work on IST. I am open to remote-first backend and data roles in India, and to global roles where sponsorship is available.",
 ] as const;

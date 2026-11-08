@@ -15,7 +15,11 @@ export default function StackSection() {
           {STACK.map((group, index) => (
             <div
               key={group.label}
-              className="grid grid-cols-[86px_1fr] gap-4 border-b border-[#111]/10 py-5 md:py-6"
+              className={`grid grid-cols-[86px_1fr] gap-4 border-b border-[#111]/10 py-5 md:py-6 ${
+                index === STACK.length - 1 && STACK.length % 2 === 1
+                  ? "md:col-span-2"
+                  : ""
+              }`}
             >
               <div className="flex items-baseline gap-2">
                 <span className="font-mono text-[8px] text-[#c74634]">
