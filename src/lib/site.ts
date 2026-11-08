@@ -16,6 +16,8 @@ export const LINKS = {
     "https://dev.to/aayusbhat26/how-to-integrate-clerk-in-next-js-application--4hba",
   devtoWatermarks:
     "https://dev.to/aayusbhat26/watermarks-are-a-contract-validating-150-pyspark-streams-5dj5",
+  devtoDuckdb:
+    "https://dev.to/aayusbhat26/sub-second-olap-without-a-warehouse-duckdb-fastapi-4m7d",
   pocSource: "https://github.com/aayusbhat26/poc_latency_test",
 } as const;
 
@@ -244,6 +246,14 @@ export const CERTIFICATIONS: Certification[] = [
 
 
 export const WRITING = [
+  {
+    date: "08 Nov 2026",
+    source: "Dev.to",
+    title: "Sub-second OLAP without a warehouse: DuckDB + FastAPI",
+    description:
+      "Zero-copy Arrow queries over a Delta Lake gold layer, served through FastAPI, with every response carrying its own query latency.",
+    href: LINKS.devtoDuckdb,
+  },
   {
     date: "06 Nov 2026",
     source: "Dev.to",
