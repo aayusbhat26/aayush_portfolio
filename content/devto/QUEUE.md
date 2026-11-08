@@ -6,7 +6,7 @@ Rules per post: universal hook first, then technical depth; no em-dashes; human 
 |---|---|---|---|---|
 | 1 | 2026-11-06 | Watermarks are a contract: validating 150+ PySpark streams | draft 02 + hvac POC code | LIVE: https://dev.to/aayusbhat26/watermarks-are-a-contract-validating-150-pyspark-streams-5dj5 |
 | 2 | 2026-11-08 | Sub-second OLAP without a warehouse: DuckDB + FastAPI | draft 01, verified against `poc_latency_test/backend/main.py` | LIVE: https://dev.to/aayusbhat26/sub-second-olap-without-a-warehouse-duckdb-fastapi-4m7d |
-| 3 | 2026-11-08 | One deploy, three services: trade-offs of a single-container product | draft 03 | ready, needs final style pass + cover |
+| 3 | 2026-11-08 | One deploy, three services: trade-offs of a single-container product | draft 03, rewritten against `task_flow/deploy/` | READY: verified against `task_flow/deploy/Dockerfile.render`, `deploy/proxy.js`, `deploy/supervisord.conf`, `socket-server/server.ts`; cover at `covers/single-container-cover.png` |
 | 4 | 2026-11-09 | The 400-event cap is a product decision | draft 04 | ready, needs final style pass + cover |
 | 5 | 2026-11-10 | Merging my first PR into Apache Iceberg | PyIceberg PR #4169 (CLI fix, honest framing) | to write |
 | 6 | 2026-11-11 | Turning world news into a reproducible data pipeline | Globe News Atlas: medallion, MinHash LSH, TF-IDF/LSA | to write |
@@ -17,4 +17,6 @@ Verified: day 1 is live with tags `pyspark`, `dataengineering`, `apachespark`. T
 
 Publishing note: the editor's "Invalid authenticity token" banner is a stale CSRF token on a long-lived tab, not a content problem. A hard refresh (Ctrl+Shift+R) issues a fresh token and session. The editor parses YAML front matter on paste and strips it from the rendered page, so paste the whole `.md` file including the front matter block.
 
-Covers: day 1 cover at covers/watermark-cover.png (1024x1024, navy/truck/clock/waveform). Generate one new cover per post in the same visual family.
+Covers: day 1 cover at covers/watermark-cover.png (1024x1024, navy/truck/clock/waveform). Generate one new cover per post in the same visual family. Day 3 cover at covers/single-container-cover.png (1024x1024, navy/one container holding three blocks/entry arrow/dashed axis).
+
+Day 3 numbers, all sourced from the repo: four supervised processes (web :3000, auth :3003, socket :3002, proxy :$PORT), V8 heap caps 192 + 96 + 96 + 48 = 432 MB inside Render Free's 512 MB container, one Prisma schema with 62 models shared by all three services, no Redis anywhere in the application code (presence is an in-process Map), uploads written to `public/uploads` on the container disk and therefore ephemeral.
